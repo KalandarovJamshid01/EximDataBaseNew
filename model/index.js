@@ -53,7 +53,23 @@ db.user_clients.belongsTo(db.photos, {
 db.user_admins.belongsTo(db.photos, {
   foreignKey: "photo_id",
 });
+db.user_news.belongsTo(db.photos, {
+  foreignKey: "photo_id",
+});
 
+db.notifies.belongsTo(db.documents, {
+  foreignKey: "document_id",
+});
+
+db.steps.belongsTo(db.documents, {
+  foreignKey: "document_id",
+});
+db.comments.belongsTo(db.documents, {
+  foreignKey: "document_id",
+});
+db.messages.belongsTo(db.documents, {
+  foreignKey: "document_id",
+});
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done!");
