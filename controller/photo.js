@@ -4,8 +4,7 @@ const Photo = db.photos;
 
 const addphoto = async (req, res, next) => {
   try {
-    let data = {};
-    const photo = await Photo.create(data);
+    const photo = await Photo.create({});
     res.status(201).json(photo);
   } catch (error) {
     res.json(error);
