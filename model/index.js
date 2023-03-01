@@ -71,6 +71,55 @@ db.messages.belongsTo(db.documents, {
   foreignKey: "document_id",
 });
 
+db.documents.belongsTo(db.files, {
+  foreignKey: "transport_nak_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "invoice_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "package_list_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "contract_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "certificate_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "extra_doc_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "product_list_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "prochie_doc_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "completed_file_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "facture_file_id",
+});
+db.documents.belongsTo(db.files, {
+  foreignKey: "certificate_found_id",
+});
+db.documents.belongsTo(db.feedbacks, {
+  foreignKey: "feedback_id",
+});
+db.documents.belongsTo(db.port_offices, {
+  foreignKey: "port_office_id",
+});
+db.documents.belongsTo(db.user_clients, {
+  foreignKey: "client_id",
+});
+db.documents.belongsTo(db.user_admins, {
+  foreignKey: "declarant_id",
+});
+db.documents.belongsTo(db.user_admins, {
+  foreignKey: "accountant_id",
+});
+
 db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done!");
 });
