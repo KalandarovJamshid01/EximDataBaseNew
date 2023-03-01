@@ -6,6 +6,10 @@ const notifies = require("./notifies");
 const news = require("./news");
 const feedback = require("./feedback");
 const step = require("./steps");
+const comment = require("./comment");
+const message = require("./message");
+const port_office = require("./port_offices");
+const file = require("./file");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -34,7 +38,10 @@ db.notifies = notifies(sequelize, DataTypes);
 db.news = news(sequelize, DataTypes);
 db.feedbacks = feedback(sequelize, DataTypes);
 db.steps = step(sequelize, DataTypes);
-
+db.comments = comment(sequelize, DataTypes);
+db.messages = message(sequelize, DataTypes);
+db.port_offices = port_office(sequelize, DataTypes);
+db.files = file(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done!");
