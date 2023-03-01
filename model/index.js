@@ -53,7 +53,7 @@ db.user_clients.belongsTo(db.photos, {
 db.user_admins.belongsTo(db.photos, {
   foreignKey: "photo_id",
 });
-db.user_news.belongsTo(db.photos, {
+db.news.belongsTo(db.photos, {
   foreignKey: "photo_id",
 });
 

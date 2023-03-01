@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     filename: {
-      type: DataTypes.String,
+      type: DataTypes.STRING,
     },
     check: {
       type: DataTypes.BOOLEAN,
