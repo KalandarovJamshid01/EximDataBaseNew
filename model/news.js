@@ -1,46 +1,32 @@
 module.exports = (sequelize, DataTypes) => {
-  const Photo = sequelize.define("photos", {
-    header: {
-      type: DataTypes.STRING,
-      defaultValue: "https://eximerp.uz/public/images/User-Icon.png",
-    },
-    userId: {
-      type: DataTypes.STRING,
-      defaultValue: "default.png",
-    },
-    uz_title: {
+  const News = sequelize.define("news", {
+    uz_header: {
       type: DataTypes.STRING,
     },
-    ru_title: {
+    ru_header: {
       type: DataTypes.STRING,
     },
-    en_title: {
+    en_header: {
       type: DataTypes.STRING,
     },
-    tr_title: {
+    tr_header: {
       type: DataTypes.STRING,
     },
-    uz_message: {
+    uz_text: {
       type: DataTypes.STRING,
     },
-    ru_message: {
+    ru_text: {
       type: DataTypes.STRING,
     },
-    en_message: {
+    en_text: {
       type: DataTypes.STRING,
     },
-    tr_message: {
+    tr_text: {
       type: DataTypes.STRING,
     },
-    view: {
-      type: DataTypes.Boolean,
-      defaultValue: false,
-    },
-    status: {
+    owner: {
       type: DataTypes.STRING,
-      defaultValue: "default",
     },
   });
-
-  return Photo;
+  return News;
 };
