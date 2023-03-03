@@ -20,7 +20,7 @@ const add_user = async (req, res) => {
       bank_name: req.body.bank_name,
       MFO: req.body.MFO,
       NDC: req.body.NDC,
-      photo_id: req.body.photo_id,
+      // photo_id: req.body.photo_id,
     });
     res.status(201).json(user);
   } catch (error) {

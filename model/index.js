@@ -12,6 +12,7 @@ const message = require("./message");
 const port_office = require("./port_offices");
 const file = require("./doc_file");
 const document = require("./document");
+const Code_TNVD = require("./code_tnvd");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -46,9 +47,15 @@ db.messages = message(sequelize, DataTypes);
 db.port_offices = port_office(sequelize, DataTypes);
 db.files = file(sequelize, DataTypes);
 db.documents = document(sequelize, DataTypes);
+db.code_tnvd = Code_TNVD(sequelize, DataTypes);
+
+
 
 db.user_clients.belongsTo(db.photos, {
-  foreignKey: "photo_id",
+  foreignKey: {
+    name: "photo_id",
+    allowNull: true,
+  },
 });
 db.user_admins.belongsTo(db.photos, {
   foreignKey: "photo_id",
@@ -74,6 +81,12 @@ db.messages.belongsTo(db.documents, {
 db.files.belongsTo(db.documents, {
   foreignKey: "document_id",
 });
+// db.files.belongsTo(db.documents, {
+//   foreignKey: "document_id",
+// });
+// db.files.belongsTo(db.documents, {
+//   foreignKey: "document_id",
+// });
 
 db.documents.belongsTo(db.feedbacks, {
   foreignKey: "feedback_id",
