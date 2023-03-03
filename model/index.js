@@ -13,6 +13,8 @@ const port_office = require("./port_offices");
 const file = require("./doc_file");
 const document = require("./document");
 const Code_TNVD = require("./code_tnvd");
+const certificate_load = require("./certificate_load");
+const code_tnvd_request = require("./code_tnvd_request");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -48,8 +50,8 @@ db.port_offices = port_office(sequelize, DataTypes);
 db.files = file(sequelize, DataTypes);
 db.documents = document(sequelize, DataTypes);
 db.code_tnvd = Code_TNVD(sequelize, DataTypes);
-
-
+db.certificate_load = certificate_load(sequelize, DataTypes);
+db.code_tnvdes = code_tnvd_request(sequelize, DataTypes);
 
 db.user_clients.belongsTo(db.photos, {
   foreignKey: {
