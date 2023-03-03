@@ -15,6 +15,7 @@ const document = require("./document");
 const Code_TNVD = require("./code_tnvd");
 const certificate_load = require("./certificate_load");
 const code_tnvd_request = require("./code_tnvd_request");
+const certificate_request = require("./certificate_request");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -52,7 +53,9 @@ db.documents = document(sequelize, DataTypes);
 db.code_tnvd = Code_TNVD(sequelize, DataTypes);
 db.certificate_load = certificate_load(sequelize, DataTypes);
 db.code_tnvdes = code_tnvd_request(sequelize, DataTypes);
+db.certificate_requests = certificate_request(sequelize, DataTypes);
 
+//---------Photo relationship------------
 db.user_clients.belongsTo(db.photos, {
   foreignKey: {
     name: "photo_id",
@@ -66,6 +69,7 @@ db.news.belongsTo(db.photos, {
   foreignKey: "photo_id",
 });
 
+//----------Document relationship other models
 db.notifies.belongsTo(db.documents, {
   foreignKey: "document_id",
 });
@@ -80,16 +84,27 @@ db.messages.belongsTo(db.documents, {
   foreignKey: "document_id",
 });
 
+// ---------------Files relationship
 db.files.belongsTo(db.documents, {
-  foreignKey: "document_id",
+  foreignKey: {
+    name: "document_id",
+    allowNull: true,
+  },
 });
-// db.files.belongsTo(db.documents, {
-//   foreignKey: "document_id",
-// });
-// db.files.belongsTo(db.documents, {
-//   foreignKey: "document_id",
-// });
+db.files.belongsTo(db.code_tnvdes, {
+  foreignKey: {
+    name: "code_tnv_id",
+    allowNull: true,
+  },
+});
+db.files.belongsTo(db.certificate_requests, {
+  foreignKey: {
+    name: "certificate_request_id",
+    allowNull: true,
+  },
+});
 
+//----------Document model relationship
 db.documents.belongsTo(db.feedbacks, {
   foreignKey: "feedback_id",
 });
@@ -103,6 +118,35 @@ db.documents.belongsTo(db.user_admins, {
   foreignKey: "declarant_id",
 });
 db.documents.belongsTo(db.user_admins, {
+  foreignKey: "accountant_id",
+});
+
+//-------------certificate model relationship
+db.certificate_requests.belongsTo(db.feedbacks, {
+  foreignKey: "feedback_id",
+});
+
+db.certificate_requests.belongsTo(db.user_clients, {
+  foreignKey: "client_id",
+});
+db.certificate_requests.belongsTo(db.user_admins, {
+  foreignKey: "declarant_id",
+});
+db.certificate_requests.belongsTo(db.user_admins, {
+  foreignKey: "accountant_id",
+});
+//-------------codetnvd model relationship
+db.code_tnvdes.belongsTo(db.feedbacks, {
+  foreignKey: "feedback_id",
+});
+
+db.code_tnvdes.belongsTo(db.user_clients, {
+  foreignKey: "client_id",
+});
+db.code_tnvdes.belongsTo(db.user_admins, {
+  foreignKey: "declarant_id",
+});
+db.code_tnvdes.belongsTo(db.user_admins, {
   foreignKey: "accountant_id",
 });
 
