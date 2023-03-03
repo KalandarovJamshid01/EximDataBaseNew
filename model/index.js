@@ -10,7 +10,7 @@ const step = require("./steps");
 const comment = require("./comment");
 const message = require("./message");
 const port_office = require("./port_offices");
-const file = require("./file");
+const file = require("./doc_file");
 const document = require("./document");
 
 const { Sequelize, DataTypes } = require("sequelize");
@@ -71,39 +71,10 @@ db.messages.belongsTo(db.documents, {
   foreignKey: "document_id",
 });
 
-db.documents.belongsTo(db.files, {
-  foreignKey: "transport_nak_id",
+db.files.belongsTo(db.documents, {
+  foreignKey: "document_id",
 });
-db.documents.belongsTo(db.files, {
-  foreignKey: "invoice_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "package_list_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "contract_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "certificate_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "extra_doc_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "product_list_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "prochie_doc_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "completed_file_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "facture_file_id",
-});
-db.documents.belongsTo(db.files, {
-  foreignKey: "certificate_found_id",
-});
+
 db.documents.belongsTo(db.feedbacks, {
   foreignKey: "feedback_id",
 });
